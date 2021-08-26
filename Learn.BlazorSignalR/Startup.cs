@@ -1,12 +1,9 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Learn.BlazorSignalR.Data;
+using Learn.BlazorSignalR.Hubs;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +25,12 @@ namespace Learn.BlazorSignalR
     {
       services.AddRazorPages();
       services.AddServerSideBlazor();
+      services.AddSignalR();
+      services.AddResponseCompression(opts =>
+      {
+        opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+          new[] { "application/octet-stream" });
+      });
       services.AddSingleton<WeatherForecastService>();
     }
 
@@ -53,7 +56,10 @@ namespace Learn.BlazorSignalR
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapBlazorHub();
+        endpoints.MapControllers();
+        endpoints.MapHub<BroadcastHub>("/broadcastHub");
         endpoints.MapFallbackToPage("/_Host");
+        //// endpoints.MapFallbackToFile("index.html");
       });
     }
   }
