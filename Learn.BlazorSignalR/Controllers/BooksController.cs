@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Learn.BlazorSignalR.Common;
 using Learn.BlazorSignalR.Data;
 using Microsoft.AspNetCore.Mvc;
 
@@ -44,6 +45,8 @@ namespace Learn.BlazorSignalR.Controllers
       // Generate 3 fake books
       await Task.Yield();
       IEnumerable<Book> books = new List<Book> { new Book(), new Book(), new Book() };
+
+      
       return books;
     }
 

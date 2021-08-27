@@ -31,7 +31,8 @@ namespace Learn.BlazorSignalR
         opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
           new[] { "application/octet-stream" });
       });
-      services.AddSingleton<WeatherForecastService>();
+
+      services.AddSingleton<BookService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,13 +7,13 @@ namespace Learn.BlazorSignalR.Hubs
   {
     public override async Task OnConnectedAsync()
     {
-      await Clients.Caller.SendAsync("Connect", Context.ConnectionId);
+      await Clients.Caller.SendAsync("Connected", Context.ConnectionId);
       // return base.OnConnectedAsync();
     }
 
-    public async Task SendMessageAsync()
+    public async Task SendMessageAsync(string message)
     {
-      await Clients.All.SendAsync("ReceiveMessage");
+      await Clients.All.SendAsync("Posted", "Some message");
     }
   }
 }
