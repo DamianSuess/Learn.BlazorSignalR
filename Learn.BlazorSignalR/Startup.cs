@@ -23,7 +23,7 @@ namespace Learn.BlazorSignalR
     // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddRazorPages();
+      services.AddRazorPages();           // Required by, endpoints.MapControllers
       services.AddServerSideBlazor();
       services.AddSignalR();
       services.AddResponseCompression(opts =>
@@ -32,6 +32,7 @@ namespace Learn.BlazorSignalR
           new[] { "application/octet-stream" });
       });
 
+      // Our custom Service
       services.AddSingleton<BookService>();
     }
 
