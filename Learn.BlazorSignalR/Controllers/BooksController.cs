@@ -46,7 +46,8 @@ namespace Learn.BlazorSignalR.Controllers
       await Task.Yield();
       IEnumerable<Book> books = new List<Book> { new Book(), new Book(), new Book() };
 
-      
+      // TODO: Send add "request to fake queue" so SignalR can send its own response as well
+
       return books;
     }
 

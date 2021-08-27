@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.AspNetCore.SignalR.Client;
@@ -17,14 +18,15 @@ namespace Learn.BlazorSignalR.Client
 
     private void Form1_Load(object sender, EventArgs e)
     {
-      txtHost.Text = "https://localhost:44321/testhub";
+      txtHostSignalR.Text = "https://localhost:44321/testhub";
+      txtHostRest.Text = "https://localhost:44321/api/books";
     }
 
     private async void BtnConnect_ClickAsync(object sender, EventArgs e)
     {
       // Build connection
       _connection = new HubConnectionBuilder()
-        .WithUrl(txtHost.Text)
+        .WithUrl(txtHostSignalR.Text)
         .Build();
 
       _connection.Closed += async (error) =>
@@ -76,9 +78,15 @@ namespace Learn.BlazorSignalR.Client
       }
     }
 
-    private void btnGetBooks_Click(object sender, EventArgs e)
+    private async void BtnGetBooks_ClickAsync(object sender, EventArgs e)
     {
       // REST - Get Books
+      var client = new HttpClient();
+      client.BaseAddress = new Uri(txtHostRest.Text);
+
+      var json = await client.GetStringAsync("");
+
+      ListAdd(json);
     }
 
     private void btnPost_Click(object sender, EventArgs e)

@@ -30,12 +30,15 @@ namespace Learn.BlazorSignalR.Client
     private void InitializeComponent()
     {
       this.btnConnect = new System.Windows.Forms.Button();
-      this.txtHost = new System.Windows.Forms.TextBox();
+      this.txtHostSignalR = new System.Windows.Forms.TextBox();
       this.lstMessages = new System.Windows.Forms.ListBox();
       this.btnPost = new System.Windows.Forms.Button();
       this.btnDisconnect = new System.Windows.Forms.Button();
       this.textBox1 = new System.Windows.Forms.TextBox();
       this.btnGetBooks = new System.Windows.Forms.Button();
+      this.label1 = new System.Windows.Forms.Label();
+      this.label2 = new System.Windows.Forms.Label();
+      this.txtHostRest = new System.Windows.Forms.TextBox();
       this.SuspendLayout();
       // 
       // btnConnect
@@ -48,15 +51,15 @@ namespace Learn.BlazorSignalR.Client
       this.btnConnect.UseVisualStyleBackColor = true;
       this.btnConnect.Click += new System.EventHandler(this.BtnConnect_ClickAsync);
       // 
-      // txtHost
+      // txtHostSignalR
       // 
-      this.txtHost.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+      this.txtHostSignalR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.txtHost.Location = new System.Drawing.Point(93, 12);
-      this.txtHost.Name = "txtHost";
-      this.txtHost.Size = new System.Drawing.Size(495, 23);
-      this.txtHost.TabIndex = 1;
-      this.txtHost.Text = "https://localhost:44321/";
+      this.txtHostSignalR.Location = new System.Drawing.Point(152, 12);
+      this.txtHostSignalR.Name = "txtHostSignalR";
+      this.txtHostSignalR.Size = new System.Drawing.Size(436, 23);
+      this.txtHostSignalR.TabIndex = 1;
+      this.txtHostSignalR.Text = "https://localhost:44321/";
       // 
       // lstMessages
       // 
@@ -65,9 +68,9 @@ namespace Learn.BlazorSignalR.Client
             | System.Windows.Forms.AnchorStyles.Right)));
       this.lstMessages.FormattingEnabled = true;
       this.lstMessages.ItemHeight = 15;
-      this.lstMessages.Location = new System.Drawing.Point(93, 39);
+      this.lstMessages.Location = new System.Drawing.Point(93, 69);
       this.lstMessages.Name = "lstMessages";
-      this.lstMessages.Size = new System.Drawing.Size(495, 199);
+      this.lstMessages.Size = new System.Drawing.Size(495, 169);
       this.lstMessages.TabIndex = 2;
       // 
       // btnPost
@@ -103,25 +106,56 @@ namespace Learn.BlazorSignalR.Client
       // btnGetBooks
       // 
       this.btnGetBooks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnGetBooks.Location = new System.Drawing.Point(12, 95);
+      this.btnGetBooks.Location = new System.Drawing.Point(12, 69);
       this.btnGetBooks.Name = "btnGetBooks";
       this.btnGetBooks.Size = new System.Drawing.Size(75, 53);
       this.btnGetBooks.TabIndex = 6;
-      this.btnGetBooks.Text = "Get Books";
+      this.btnGetBooks.Text = "Get Books (REST)";
       this.btnGetBooks.UseVisualStyleBackColor = true;
-      this.btnGetBooks.Click += new System.EventHandler(this.btnGetBooks_Click);
+      this.btnGetBooks.Click += new System.EventHandler(this.BtnGetBooks_ClickAsync);
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(93, 15);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(49, 15);
+      this.label1.TabIndex = 7;
+      this.label1.Text = "SignalR:";
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(107, 44);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(35, 15);
+      this.label2.TabIndex = 8;
+      this.label2.Text = "REST:";
+      // 
+      // txtHostRest
+      // 
+      this.txtHostRest.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.txtHostRest.Location = new System.Drawing.Point(152, 41);
+      this.txtHostRest.Name = "txtHostRest";
+      this.txtHostRest.Size = new System.Drawing.Size(436, 23);
+      this.txtHostRest.TabIndex = 9;
+      this.txtHostRest.Text = "https://localhost:44321/";
       // 
       // MainForm
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(600, 283);
+      this.Controls.Add(this.txtHostRest);
+      this.Controls.Add(this.label2);
+      this.Controls.Add(this.label1);
       this.Controls.Add(this.btnGetBooks);
       this.Controls.Add(this.textBox1);
       this.Controls.Add(this.btnDisconnect);
       this.Controls.Add(this.btnPost);
       this.Controls.Add(this.lstMessages);
-      this.Controls.Add(this.txtHost);
+      this.Controls.Add(this.txtHostSignalR);
       this.Controls.Add(this.btnConnect);
       this.Name = "MainForm";
       this.Text = "Form1";
@@ -134,12 +168,15 @@ namespace Learn.BlazorSignalR.Client
     #endregion
 
     private System.Windows.Forms.Button btnConnect;
-    private System.Windows.Forms.TextBox txtHost;
+    private System.Windows.Forms.TextBox txtHostSignalR;
     private System.Windows.Forms.ListBox lstMessages;
     private System.Windows.Forms.Button btnPost;
     private System.Windows.Forms.Button btnDisconnect;
     private System.Windows.Forms.TextBox textBox1;
     private System.Windows.Forms.Button btnGetBooks;
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.TextBox txtHostRest;
   }
 }
 
