@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Learn.BlazorSignalR.Common;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace Learn.BlazorSignalR.Client
@@ -89,9 +91,22 @@ namespace Learn.BlazorSignalR.Client
       ListAdd(json);
     }
 
-    private void btnPost_Click(object sender, EventArgs e)
+    private async void BtnPost_ClickAsync(object sender, EventArgs e)
     {
-      // Do something RESTful here
+      ////// Do something RESTful here
+      ////var client = new HttpClient();
+      ////client.BaseAddress = new Uri(txtHostRest.Text);
+      ////
+      ////Book book = new Book("Quick Blazor Examples with SuessLabs");
+      ////var json = System.Text.Json.JsonSerializer.Serialize(book);
+      ////
+      ////// POST - Add new item
+      ////// PUT  - Update item
+      ////var response = await client.PostAsync(
+      ////  "",    //// $"api/item",
+      ////  new StringContent(json, Encoding.UTF8, "application/json"));
+      ////
+      ////ListAdd("Sent RESTful POST of a Book.. wait for SignalR to confirm it was queued.");
     }
 
     private void ListAdd(string message)

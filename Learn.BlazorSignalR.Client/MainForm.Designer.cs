@@ -76,13 +76,13 @@ namespace Learn.BlazorSignalR.Client
       // btnPost
       // 
       this.btnPost.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-      this.btnPost.Location = new System.Drawing.Point(513, 248);
+      this.btnPost.Location = new System.Drawing.Point(12, 247);
       this.btnPost.Name = "btnPost";
       this.btnPost.Size = new System.Drawing.Size(75, 23);
       this.btnPost.TabIndex = 3;
       this.btnPost.Text = "Post";
       this.btnPost.UseVisualStyleBackColor = true;
-      this.btnPost.Click += new System.EventHandler(this.btnPost_Click);
+      this.btnPost.Click += new System.EventHandler(this.BtnPost_ClickAsync);
       // 
       // btnDisconnect
       // 

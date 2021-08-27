@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Learn.BlazorSignalR.Common;
 using Learn.BlazorSignalR.Data;
@@ -30,6 +31,8 @@ namespace Learn.BlazorSignalR.Controllers
     [HttpGet("{id}")]
     public async Task<Book> GetAsync(int id)
     {
+      Debug.WriteLine($"GET single book: {id}");
+
       await Task.Yield();
       return new Book(id.ToString());
     }
@@ -42,6 +45,7 @@ namespace Learn.BlazorSignalR.Controllers
     [HttpGet]
     public async Task<IEnumerable<Book>> GetAsync()
     {
+      Debug.WriteLine($"GET (books)");
       // Generate 3 fake books
       await Task.Yield();
       IEnumerable<Book> books = new List<Book> { new Book(), new Book(), new Book() };
@@ -55,18 +59,21 @@ namespace Learn.BlazorSignalR.Controllers
     [HttpPost]
     public void Post([FromBody] string value)
     {
+      Debug.WriteLine($"POST: {value}");
     }
 
     // PUT api/<BooksController>/5
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] string value)
     {
+      Debug.WriteLine($"PUT: {value}");
     }
 
     // DELETE api/<BooksController>/5
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
+      Debug.WriteLine($"DELETE: {id}");
     }
   }
 }

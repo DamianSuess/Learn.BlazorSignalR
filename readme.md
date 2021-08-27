@@ -32,6 +32,8 @@ The client uses 2 keys connections (1) SignalR, (2) REST
 
 ## References
 
+* Rest
+    * [https://github.com/DamianSuess/Test.RestApi/]
 * [https://github.com/dotnet/aspnetcore/tree/main/src/SignalR]
 * [https://github.com/dotnet/AspNetCore.Docs/pull/21271]
 * [Sample App](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/5.0/BlazorServerSignalRApp)
