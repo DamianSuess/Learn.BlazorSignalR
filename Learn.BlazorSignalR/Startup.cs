@@ -57,8 +57,8 @@ namespace Learn.BlazorSignalR
       {
         endpoints.MapBlazorHub();
         endpoints.MapControllers();
-        endpoints.MapHub<BroadcastHub>("/broadcastHub");
-        endpoints.MapFallbackToPage("/_Host");
+        endpoints.MapHub<TestHub>("/testhub");
+        //// endpoints.MapFallbackToPage("/_Host");
         //// endpoints.MapFallbackToFile("index.html");
       });
     }
