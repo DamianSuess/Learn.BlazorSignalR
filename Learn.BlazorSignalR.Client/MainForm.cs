@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Learn.BlazorSignalR.Common;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace Learn.BlazorSignalR.Client
@@ -24,7 +22,7 @@ namespace Learn.BlazorSignalR.Client
       txtHostRest.Text = "https://localhost:44321/api/books";
     }
 
-    private async void BtnConnect_ClickAsync(object sender, EventArgs e)
+    private async void BtnSignalrConnect_ClickAsync(object sender, EventArgs e)
     {
       // Build connection
       _connection = new HubConnectionBuilder()
@@ -66,7 +64,7 @@ namespace Learn.BlazorSignalR.Client
       }
     }
 
-    private void btnDisconnect_Click(object sender, EventArgs e)
+    private void BtnSignalrDisconnect_Click(object sender, EventArgs e)
     {
       try
       {
@@ -80,7 +78,23 @@ namespace Learn.BlazorSignalR.Client
       }
     }
 
-    private async void BtnGetBooks_ClickAsync(object sender, EventArgs e)
+    private async void BtnSignalrSend_ClickAsync(object sender, EventArgs e)
+    {
+      // Sends a message via SignalR and will be picked up by the Hub
+      // SignalR will then send back a 'Posted' message back.
+      // NOTE: The 'methodName' MUST match the Hub's method name to get picked up.
+      try
+      {
+        var msg = string.IsNullOrEmpty(txtMessage.Text) ? "Default message from client" : txtMessage.Text;
+        await _connection.InvokeAsync("SendMessageAsync", msg);
+      }
+      catch (Exception ex)
+      {
+        ListAdd($"SignalR Invoke Error - {ex.Message}");
+      }
+    }
+
+    private async void BtnRestGetBooks_ClickAsync(object sender, EventArgs e)
     {
       // REST - Get Books
       var client = new HttpClient();
@@ -91,7 +105,7 @@ namespace Learn.BlazorSignalR.Client
       ListAdd(json);
     }
 
-    private async void BtnPost_ClickAsync(object sender, EventArgs e)
+    private async void BtnRestPost_ClickAsync(object sender, EventArgs e)
     {
       ////// Do something RESTful here
       ////var client = new HttpClient();
