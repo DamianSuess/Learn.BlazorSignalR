@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Learn.BlazorSignalR.Common;
 using Microsoft.AspNetCore.SignalR;
 
 namespace Learn.BlazorSignalR.Hubs
@@ -17,6 +18,28 @@ namespace Learn.BlazorSignalR.Hubs
     public async Task SendMessageAsync(string message)
     {
       await Clients.All.SendAsync("Posted", $"Someone sent '{message}'");
+
+      // Send this too...
+      await SendObjectAsync("ghost-user", "where did this come from?");
+    }
+
+    public async Task SendObjectAsync(string user, string message)
+    {
+      var packet = new SignaledMessage
+      {
+        User = user,
+        Message = message,
+      };
+
+      // Short version:
+      // Requires ClientProxyExtension
+      // await Clients.All.SendAsync(packet);
+      //
+      // Long version: Build object array & send it
+      string method = typeof(SignaledMessage).Name;
+      object[] objs = new object[] { packet };
+
+      await Clients.All.SendCoreAsync(method, objs);
     }
   }
 }

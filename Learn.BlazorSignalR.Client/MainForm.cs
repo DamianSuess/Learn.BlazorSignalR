@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Learn.BlazorSignalR.Common;
 using Microsoft.AspNetCore.SignalR.Client;
 
 namespace Learn.BlazorSignalR.Client
@@ -42,12 +43,21 @@ namespace Learn.BlazorSignalR.Client
         SetConnectionId(connectionId);
       });
 
+      // Listen for "Posted" message initiated by `Invoke("SendMessageAsync", ..)
       _connection.On<string>("Posted", (value) =>
       {
         ListAdd($"[POST] - {value.ToString()}");
       });
 
-      // Connect
+      // Listen for other SignalR messages we didn't directly call
+      _connection.On<string, string>(nameof(SignaledMessage), (user, msg) =>
+      ////_connection.On<string, string>(typeof(SignaledMessage).Name, (user, msg) =>
+      {
+        // WARNING: Not currently working at this time
+        ListAdd($"SECRET: {user} - {msg}");
+      });
+
+      // Connect to SignalR
       try
       {
         ListAdd("Connecting...");
@@ -107,6 +117,8 @@ namespace Learn.BlazorSignalR.Client
 
     private async void BtnRestPost_ClickAsync(object sender, EventArgs e)
     {
+      // WARNING: Not currently working at this time
+      //
       ////// Do something RESTful here
       ////var client = new HttpClient();
       ////client.BaseAddress = new Uri(txtHostRest.Text);
