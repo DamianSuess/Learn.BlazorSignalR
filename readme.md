@@ -20,6 +20,7 @@ There is no web front-end, this is intended as a pure headless web server with t
       * Remove front end endpoints `endpoints.MapFallbackTo...`
 
 ### Client App
+
 Follow the example code.
 
 The client uses 2 keys connections (1) SignalR, (2) REST
@@ -29,11 +30,15 @@ The client uses 2 keys connections (1) SignalR, (2) REST
 | SignalR Hub     | `Hubs\TestHub.cs`                 | `https://localhost:44321/testhub`
 | REST Controller | `Controllers\BooksController.cs`  | `https://localhost:44321/api/books`
 
+## Future Examples
+
+* [ ] Send a GET request and recieve back SignalR object to all clients
+* [ ] Send a GET request and recieve back SignalR ONLY to calling client
 
 ## References
 
 * Rest
-    * [https://github.com/DamianSuess/Test.RestApi/]
+  * [https://github.com/DamianSuess/Test.RestApi/]
 * [https://github.com/dotnet/aspnetcore/tree/main/src/SignalR]
 * [https://github.com/dotnet/AspNetCore.Docs/pull/21271]
 * [Sample App](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-blazor/samples/5.0/BlazorServerSignalRApp)
