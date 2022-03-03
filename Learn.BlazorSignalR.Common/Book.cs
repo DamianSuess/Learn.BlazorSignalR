@@ -5,17 +5,22 @@ namespace Learn.BlazorSignalR.Common
   public class Book
   {
     public Book()
-      : this(Guid.NewGuid().ToString())
+      : this(default, "")
     {
     }
 
     public Book(string name)
+      : this(Guid.NewGuid(), name)
     {
-      Id = Guid.NewGuid().ToString();
+    }
+
+    public Book(Guid id, string name)
+    {
+      Id = Guid.NewGuid();
       Name = name;
     }
 
-    public string Id { get; set; }
+    public Guid Id { get; set; }
 
     public string Isbn { get; set; }
 
